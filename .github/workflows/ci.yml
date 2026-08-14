@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Build
+        run: mvn -B package
+
+      - name: Read Maven Project Info
+        id: project
+        run: |
+          ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+
+          echo "artifactId=$ARTIFACT_ID" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Rename Artifact
+        run: |
+          cp target/${{ steps.project.outputs.artifactId }}-${{ steps.project.outputs.version }}-jar-with-dependencies.jar \
+             target/${{ steps.project.outputs.artifactId }}.jar
+
+      - name: Create Prerelease
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          prerelease: true
+          generate_release_notes: false
+          files: |
+            target/${{ steps.project.outputs.artifactId }}.jar

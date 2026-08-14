@@ -1,0 +1,16 @@
+package com.dbeaver.agent.intercepter;
+
+import com.dbeaver.agent.Cipher;
+import net.bytebuddy.implementation.bind.annotation.Origin;
+import net.bytebuddy.implementation.bind.annotation.RuntimeType;
+import net.bytebuddy.implementation.bind.annotation.SuperCall;
+
+import java.lang.reflect.Method;
+import java.util.concurrent.Callable;
+
+public class LoadKeyInterceptor {
+    @RuntimeType
+    public static Object intercept(@Origin Method method, @SuperCall Callable<?> callable) throws Exception {
+        return (new Cipher()).getPublicKey();
+    }
+}
