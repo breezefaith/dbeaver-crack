@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class Main {
     public static Set<String> productIds = Set.of("dbeaver-ue", "dbeaver-ee", "dbeaver-te");
-    public static Set<String> productVersions = Set.of("26.0", "26.1");
+    public static Set<String> productVersions = Set.of("26.0", "26.1", "26.2");
 
     public static void main(String[] args) {
         try {
@@ -25,11 +25,11 @@ public class Main {
             }
             ProductInfo productInfo = switch (productId) {
                 case "dbeaver-ue" ->
-                        new ProductInfo("dbeaver-ee", "DB", "DBeaver Enterprise", "DBeaver Enterprise Edition", productVersion, LMProductType.DESKTOP, LMLicenseType.ULTIMATE, ProductInfo.DESKTOP_FLAG);
+                        new ProductInfo("dbeaver-ue", "DB", "DBeaver Ultimate " + productVersion, "DBeaver Ultimate Edition", productVersion, LMProductType.DESKTOP, LMLicenseType.ULTIMATE, ProductInfo.DESKTOP_FLAG);
                 case "dbeaver-ee" ->
-                        new ProductInfo("dbeaver-ue", "DB", "DBeaver Ultimate", "DBeaver Ultimate Edition", productVersion, LMProductType.DESKTOP, LMLicenseType.ULTIMATE, ProductInfo.DESKTOP_FLAG);
+                        new ProductInfo("dbeaver-ee", "DB", "DBeaver Enterprise " + productVersion, "DBeaver Enterprise Edition", productVersion, LMProductType.DESKTOP, LMLicenseType.ULTIMATE, ProductInfo.DESKTOP_FLAG);
                 case "dbeaver-te" ->
-                        new ProductInfo(" cloudbeaver-dc", "DB", "DBeaver Team", "DBeaver Team Edition", productVersion, LMProductType.SERVER, LMLicenseType.TEAM, ProductInfo.SERVER_FLAG);
+                        new ProductInfo("cloudbeaver-dc", "DB", "DBeaver Team " + productVersion, "DBeaver Team Edition", productVersion, LMProductType.SERVER, LMLicenseType.TEAM, ProductInfo.SERVER_FLAG);
                 default -> null;
             };
             OwnerInfo ownerInfo = OwnerInfo.DEFAULT;
