@@ -11,9 +11,12 @@ Place the following packages in the "lib" folder and update the "pom.xml"
 ## How to use
 
 Simply run `mvn package` to build.
-The generated "dbeaver-agent-26.1-SNAPSHOT-jar-with-dependencies.jar" should be renamed to "dbeaver-agent.jar" and placed in the DBeaver installation directory.
+The generated "dbeaver-agent-26.2-SNAPSHOT-jar-with-dependencies.jar" should be renamed to "dbeaver-agent.jar" and placed in the DBeaver installation directory.
 
-Run `java -cp "./dbeaver-agent.jar;plugins/*" com.dbeaver.agent.Main` to generate the license key
+Run one of the following commands to generate the license key:
+
+- Windows: `java -cp "./dbeaver-agent.jar;plugins/*" com.dbeaver.agent.Main`
+- macOS/Linux: `java -cp "./dbeaver-agent.jar:plugins/*" com.dbeaver.agent.Main`
 
 Modify the "dbeaver.ini" file in the DBeaver installation directory and add some parameters
 
@@ -54,3 +57,4 @@ plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.1500.v20250801-0854 -v
 The following are the versions that have been tested:
 
 - 26.1.0 (Windows, Ubuntu)
+- 26.2.0 (macOS)

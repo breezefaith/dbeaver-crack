@@ -11,9 +11,12 @@
 ## 怎么用?
 
 直接 `mvn package` 构建就可以了.
-生成的 `dbeaver-agent-26.1-SNAPSHOT-jar-with-dependencies.jar` 重命名为 `dbeaver-agent.jar` 放到 DBeaver 安装目录
+生成的 `dbeaver-agent-26.2-SNAPSHOT-jar-with-dependencies.jar` 重命名为 `dbeaver-agent.jar` 放到 DBeaver 安装目录
 
-运行 `java -cp "./dbeaver-agent.jar;plugins/*" com.dbeaver.agent.Main` 生成许可证密钥
+运行以下命令生成许可证密钥:
+
+- Windows: `java -cp "./dbeaver-agent.jar;plugins/*" com.dbeaver.agent.Main`
+- macOS/Linux: `java -cp "./dbeaver-agent.jar:plugins/*" com.dbeaver.agent.Main`
 
 修改 DBeaver 安装目录的 `dbeaver.ini` 给他加点参数  
 
@@ -53,10 +56,11 @@ plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.1500.v20250801-0854
 
 ## Team Docker
 
-生成的 `dbeaver-agent-26.1-SNAPSHOT-jar-with-dependencies.jar` 重命名为 `dbeaver-agent.jar` 放到 team 目录
+生成的 `dbeaver-agent-26.2-SNAPSHOT-jar-with-dependencies.jar` 重命名为 `dbeaver-agent.jar` 放到 team 目录
 
 ## 支持版本
 
 下列是已经测试过的版本:
 
 - 26.1.0 (Windows, Ubuntu)
+- 26.2.0 (macOS)
